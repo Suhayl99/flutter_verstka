@@ -48,25 +48,24 @@ class _ArtAppState extends State<ArtApp> {
         actions: [
           Row(
             children: [
-                IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.search,
-              color: textColor1,
-              size: 24,
-            ),
-          ),
-            IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.menu_outlined,
-              color: textColor1,
-              size: 24,
-            ),
-          ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  color: textColor1,
+                  size: 24,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.menu_outlined,
+                  color: textColor1,
+                  size: 24,
+                ),
+              ),
             ],
           )
-        
         ],
       ),
       body: ListView(
@@ -74,67 +73,57 @@ class _ArtAppState extends State<ArtApp> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-            child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Add wallet to pay',
-                      style: kTextStyle(
-                        color: textColor1,
-                        size: 20,
-                      ),
-                    ),
-                    Text(
-                      'Easy to sell your Digital Art with 3 step',
-                      style: kTextStyle(
-                          color: Colors.black54,
-                          size: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-            ),
-          ),
-          Container(
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextButton.icon(
-                  onPressed: () {},
-                  icon: Container(
-                    height: 100,
-                    width: 343,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.only(top: 4),
-                    decoration: const BoxDecoration(
-                      color: Colors.black54,
-
-                    ),
-                    child: Text(
-                      '+',
-                      style: kTextStyle(
-                          size: 16,
-                          color: textColor1,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  label: Text(
-                    "Bank wallet",
-                    style: kTextStyle(
-                        size: 24,
-                        color: textColor1,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  style: buttonStyle(
-                    color: Colors.white,
-                    shadowColor: Colors.black12,
-                    elevation: 10,
-                    padding: const EdgeInsets.fromLTRB(5, 5, 15, 5),
-                    borderRadius: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Add wallet to pay',
+                  style: kTextStyle(
+                    color: textColor1,
+                    size: 20,
                   ),
                 ),
-              ),
+                Text(
+                  'Easy to sell your Digital Art with 3 step',
+                  style: kTextStyle(
+                      color: Colors.black54,
+                      size: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
+ Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.fromLTRB(20, 36, 20, 60),
+              child: Row(            
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _itemIcon("1","Sellect", Color(0xff0038FF), Colors.white),
+                  const Divider(
+                    color: Colors.black54,
+                    indent: 68,
+                    endIndent: 12,
+                  ),
+                    _itemIcon("2","Scan",Color(0xffDCDCDC), textColor1),
+                    const Divider(
+                    color: Colors.black54,
+                    indent: 70,
+                    endIndent: 12,
+                  ),
+                    _itemIcon("3","Confirm",Color(0xffDCDCDC), textColor1),
+                ],
+              ),
+            ),
+
+          _itemView("Bank wallet"),
           Padding(
-            padding: const EdgeInsets.only(top: 40, left: 70, right: 70),
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: _itemView("Coin wallet"),
+          ),
+          _itemView("Wallet connect"),
+          Padding(
+            padding: const EdgeInsets.only(top: 140, left: 70, right: 70),
             child: Image.asset(
               "assets/app_logo.png",
             ),
@@ -146,14 +135,14 @@ class _ArtAppState extends State<ArtApp> {
                 style: kTextStyle(
                     color: Colors.black45,
                     size: 30,
-                    fontWeight: FontWeight.w200),
+                    fontWeight: FontWeight.w300),
               ),
               Text(
                 "New",
                 style: kTextStyle(
                     color: Colors.black54,
                     size: 30,
-                    fontWeight: FontWeight.w300),
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "Creative",
@@ -205,5 +194,60 @@ class _ArtAppState extends State<ArtApp> {
         ],
       ),
     );
+  }
+
+  Container _itemIcon(String text1, String text2, Color color, Color colortext) {
+    return Container(
+                child: Column(children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration:  BoxDecoration(borderRadius: BorderRadius.circular(20), color: color),
+                    child: Text(text1, style: kTextStyle(size: 20, color: colortext,),),
+                  ),
+                  SizedBox(height: 10,),
+                  Text(text2, style: kTextStyle(size: 16, color: textColor1,),)
+                ],
+                ),
+              );
+  }
+
+  Container _itemView(String text) {
+    return Container(
+          decoration: BoxDecoration( borderRadius: BorderRadius.circular(24), color: Colors.white),
+          width: 343,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          height: 100,
+          child: Row(
+            children: [
+              Container(
+                height: 76,
+                width: 76,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.only(top: 4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xffEEEEEE),
+                ),
+                child: Text(
+                  '+',
+                  style: kTextStyle(
+                      size: 36, color: textColor1, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                text,
+                style: kTextStyle(
+                    size: 24,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        );
   }
 }
